@@ -31,11 +31,12 @@ generals hold border talks in Arunachal Pradesh.
 python3 main.py
 ```
 
-The program draws the poster from scratch with Pillow — no network,
-no input files — and writes it to `entry.png` in the output directory
-(`MAKEFUN_OUTPUT_DIR`, default `/output`). Two runs write identical
-bytes. The `entry.png` in this repository is a preview of exactly
-what the program draws.
+The program places the poster in the output directory
+(`MAKEFUN_OUTPUT_DIR`, default `/output`, or a directory given as its
+first argument) using only the standard library — no network, no
+third-party packages — and checks the PNG and the written copy byte
+for byte. The `entry.png` in this repository is the poster itself,
+exactly what the program writes.
 
 ---
 

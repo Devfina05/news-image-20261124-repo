@@ -39,6 +39,7 @@ pass silently. Two runs produce the same bytes.
 
 Usage:
     MAKEFUN_OUTPUT_DIR=out python3 main.py
+    python3 main.py out          # same, output directory as an argument
 """
 
 import hashlib
@@ -113,11 +114,15 @@ def find_source():
         f"working directory")
 
 
-def main():
+def main(argv=None):
+    args = list(sys.argv[1:] if argv is None else argv)
     source = find_source()
     data = source.read_bytes()
     width, height = check_png(data)
-    out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
+    if args:
+        out_dir = Path(args[0])
+    else:
+        out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
     out_dir.mkdir(parents=True, exist_ok=True)
     target = out_dir / "entry.png"
     target.write_bytes(data)
